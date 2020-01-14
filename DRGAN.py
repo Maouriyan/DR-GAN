@@ -38,7 +38,6 @@ class Single_DRGAN(BaseModel):
             self.L1_criterion = nn.L1Loss()
             self.w_L1 = opt.w_L1
 
-
         self.N_z = opt.N_z
         self.N_p = opt.N_p
         self.N_d = opt.N_d
@@ -138,7 +137,7 @@ class Single_DRGAN(BaseModel):
 
     def optimize_D_parameters(self):
         self.optimizer_D.zero_grad()
-        self.backward_D().long()
+        self.backward_D()
         self.optimizer_D.step()
 
     def print_current_errors(self):
