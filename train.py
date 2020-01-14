@@ -9,6 +9,15 @@ sys.path.append('model')
 from model_Loader import CreateModel
 sys.path.append('util')
 from utils import error as err
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from google.colab import auth
+from oauth2client.client import GoogleCredentia
+
+auth.authenticate_user()
+gauth = GoogleAuth()
+gauth.credentials = GoogleCredentials.get_application_default()
+drive = GoogleDrive(gauth)
 
 opt = TrainOptions().parse()
 data_loader = CreateDataLoader(opt)
