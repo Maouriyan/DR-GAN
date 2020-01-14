@@ -12,13 +12,13 @@ from utils import error as err
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from google.colab import auth
-from oauth2client.client import GoogleCredentia
+from oauth2client.client import GoogleCredentials
 
 auth.authenticate_user()
 gauth = GoogleAuth()
 gauth.credentials = GoogleCredentials.get_application_default()
 drive = GoogleDrive(gauth)
-
+print("Drive Okay")
 opt = TrainOptions().parse()
 data_loader = CreateDataLoader(opt)
 model = CreateModel(opt)
@@ -54,7 +54,7 @@ for epoch in range(opt.count_epoch + 1,  opt.epochs + 1):
         uploaded.SetContentFile(strinD_Path)
         uploaded.Upload()
         print('Uploaded file with ID {}'.format(uploaded.get('id')))
-        strinG = '{}_net_D.path'.format(epoch)
+        strinG = '{}_net_G.path'.format(epoch)
         strinG_Path = '/content/single/{}_net_G.path'.format(epoch)
         uploaded = drive.CreateFile({'title': strinG})
         uploaded.SetContentFile(strinG_Path)
